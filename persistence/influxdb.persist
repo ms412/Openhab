@@ -1,0 +1,16 @@
+// persistence strategies have a name and a definition and are referred to in the "Items" section
+Strategies {
+	// for rrd charts, we need a cron strategy
+	everyHour : "0 0 * * * ?"
+	default = everyChange, restoreOnStartup
+}
+
+Items {
+        //gHeating* : strategy =  everyChange, everyHour
+//	gModbus* : strategy = everyChange
+	gHeating* : strategy = everyChange
+	gmyStrom* : strategy = everyChange
+	gKeller* : strategy = everyChange
+	gString* : strategy = everyChange
+	gPV* : strategy = everyChange
+}

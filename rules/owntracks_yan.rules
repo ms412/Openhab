@@ -1,0 +1,66 @@
+rule Startup
+when
+	System started
+then
+	sendCommand(Present_Zollikofen_Yan,OFF)
+	sendCommand(Present_Saali_Yan,OFF)
+	sendCommand(Present_Ingolstadt_Yan,OFF)
+	sendCommand(Present_SC_Ittigen_Yan,OFF)
+	sendCommand(Present_SC_Worblaufen_Yan,OFF)
+	sendCommand(Present_SC_Liebefeld_Yan,OFF)
+	
+end
+
+rule "Present Zollikofen Yan"
+when
+	Item Present_Zollikofen_Yan changed 
+then
+	if (Present_Zollikofen_Yan.state == ON) {
+		sendMail("markus.schiesser@swisscom.com","Yan Zollikofen","Yan Enter Zollikofen")
+		WoIstYan.postUpdate("Zollikofen")
+	}else{
+		sendMail("markus.schiesser@swisscom.com","Yan Zollikofen","Yan Leave Zollikofen")
+		WoIstYan.postUpdate("Don't know")
+	}
+end
+
+rule "Present Saali Yan"
+when
+        Item Present_Saali_Yan changed 
+then
+	if (Present_Saali_Yan.state == ON) {
+        	sendMail("markus.schiesser@swisscom.com","Yan Saali","Yan Enter Saali")
+		WoIstYan.postUpdate("Saali")
+	}else{
+        	sendMail("markus.schiesser@swisscom.com","Yan Saali","Yan Leave Saali")
+		WoIstYan.postUpdate("Don't know")
+	}
+end
+
+rule "Present Ingolstadt Yan"
+when
+        Item Present_Ingolstadt_Yan changed 
+then
+	if (Present_Ingolstadt_Yan.state == ON) {
+        	sendMail("markus.schiesser@swisscom.com","Yan Ingolstadt","Yan Enter Ingolstadt")
+		WoIstYan.postUpdate("Ingolstadt")
+
+	}else{
+        	sendMail("markus.schiesser@swisscom.com","Yan Ingolstadt","Yan Leave Ingolstadt")
+		WoIstYan.postUpdate("Don't know")
+	}
+end
+
+
+rule "Present Swisscom Ittigen Yan"
+when
+        Item Present_SC_Ittigen_Yan changed 
+then
+	if (Present_SC_Ittigen_Yan.state == ON) {
+        	sendMail("markus.schiesser@swisscom.com","Yan Ittigen","Yan Enter Swisscom Ittigen")
+		WoIstYan.postUpdate("SC Ittigen")
+	}else{
+        	sendMail("markus.schiesser@swisscom.com","Yan Ittigen","Yan Leave Swisscom Ittigen")
+		WoIstYan.postUpdate("Don't know")
+	}
+end

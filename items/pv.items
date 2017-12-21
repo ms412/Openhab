@@ -1,0 +1,28 @@
+
+Number STROM1 "String 1 [%.2f A]" <energy> (gStringA) {mqtt="<[mybroker:/OPENHAB/PV/STROM1:state:default]"}
+Number STROM2 "String 2 [%.2f A]" <energy> (gStringA) {mqtt="<[mybroker:/OPENHAB/PV/STROM2:state:default]"}
+Number STROM3 "String 3 [%.2f A]" <energy> (gStringA) {mqtt="<[mybroker:/OPENHAB/PV/STROM3:state:default]"}
+Number STROM4 "String 4 [%.2f A]" <energy> (gStringA) {mqtt="<[mybroker:/OPENHAB/PV/STROM4:state:default]"}
+Number STROM5 "String 5 [%.2f A]" <energy> (gStringA) {mqtt="<[mybroker:/OPENHAB/PV/STROM5:state:default]"}
+Number STROM6 "String 6 [%.2f A]" <energy> (gStringA) {mqtt="<[mybroker:/OPENHAB/PV/STROM6:state:default]"}
+Number STROM7 "String 7 [%.2f A]" <energy> (gStringA) {mqtt="<[mybroker:/OPENHAB/PV/STROM7:state:default]"}
+Number STROM8 "String 8 [%.2f A]" <energy> (gStringA) {mqtt="<[mybroker:/OPENHAB/PV/STROM8:state:default]"}
+Number STROM9 "String 9 [%.2f A]" <energy> (gStringA) {mqtt="<[mybroker:/OPENHAB/PV/STROM9:state:default]"}
+Number STROM10 "String 10 [%.2f A]" <energy> (gStringA) {mqtt="<[mybroker:/OPENHAB/PV/STROM10:state:default]"}
+Number DC_VOLTAGE1 "VOLTRAGE 1 [%.1f V]" <energy> (gPV,gStringV) {mqtt="<[mybroker:/OPENHAB/PV/VOLTAGE1:state:default]"}
+
+//Number VOLTAGE1 "VOLTRAGE 1 [%.1f °C]" <energy> (gModbus) {mqtt="<[mybroker:/OPENHAB/PV/VOLTAGE1:state:default]"}
+
+Number AC_POWER1 "AC_POWER 1 [%.2f W]" <energy> (gPV) {mqtt="<[mybroker:/OPENHAB/AC/POWER:state:default]"}
+Number AC_CURRENT1 "AC_CURRENT 1 [%.2f A]" <energy> (gPV) {mqtt="<[mybroker:/OPENHAB/AC/CURRENT:state:default]"}
+Number AC_VOLTAGE1 "AC_VOLTAGE 1 [%.1f V]" <energy> (gPV) {mqtt="<[mybroker:/OPENHAB/AC/VOLTAGE:state:default]"}
+
+Number AC_TOTAL_POWER "TOTAL POWER[%.2f kWh]" <energy> (gPV) {mqtt="<[mybroker:/OPENHAB/AC/TOTAL_ACTIVE_ENERGY:state:default]"}
+
+Number LastDayPower "Last Day Power[%.2f kWh]" <energy> (gPV)
+Number LastWeekPower "Last Week Power[%.2f kWh]" <energy> (gPV)
+Number LastMonthPower "Last Month Power[%.2f kWh]" <energy> (gPV)
+Number LsatYearPower "Last Year Power[%.2f kWh]" <energy> (gPV)
+
+Number DC_CURRENT1 "DC_CURRENT 1 [%.2f A]" <energy> (gPV)
+Number DC_POWER1 "DC_POWER 1 [%.2f W]" <energy> (gPV)

@@ -1,0 +1,136 @@
+
+//val String where_is_markus ="Don't kown"
+
+val String GoogleAPIKey = "AIzaSyD_DswI2aS9vsGX51fOQKiB6GdWFxfOjnI"
+
+val String OwT_event_tgdscm41 ="unknown"
+val String enter = ""
+
+
+rule "Owntracks tgdscm41"
+when 
+    Item OwT_tgdscm41_raw changed
+then
+
+    val String json = (OwT_tgdscm41_raw.state as StringType).toString
+
+    val String type = transform("JSONPATH", "$._type", json)
+    if (type == "location") {
+      val String lat  = transform("JSONPATH", "$.lat", json)
+      val String lon  = transform("JSONPATH", "$.lon", json)
+    //  val String acc  = transform("JSONPATH", "$.acc", json)
+      val String batt = transform("JSONPATH", "$.batt", json)
+      val String tst  = transform("JSONPATH", "$.tst", json)
+
+  //    logError("OWNTRACKS","Pars" + lat)
+
+      OwT_tgdscm41_battery.postUpdate(new PercentType(batt))
+      val geocodeURL = "https://maps.googleapis.com/maps/api/geocode/json?latlng=" + lat + "," + lon + "&sensor=true&key=" + GoogleAPIKey
+   
+      val String gecodeResponse = sendHttpGetRequest(geocodeURL)
+      val String formattedAddress = transform("JSONPATH", "$.results[0].formatted_address", gecodeResponse)
+      logError("OWNTRACKS","Pars" + formattedAddress)
+
+     // val String formattedAddressParts = formattedAddress.split(",")
+      val String street = formattedAddress.split(',').get(0)
+      val String town = formattedAddress.split(',').get(1)
+      val String country = formattedAddress.split(',').get(2)
+
+      OwT_tgdscm41_location_headline.postUpdate(street) 
+      OwT_tgdscm41_location.postUpdate(street + "\r\n" + town + "\r\n" + country)  
+
+      var DateTime time = new DateTime(Long::parseLong(tst) * 1000L)
+      OwT_tgdscm41_update.postUpdate(new DateTimeType(time.toString))  
+      logError("OWNTRACKS","Time " + time)
+
+   }
+end
+
+rule "Owntracks taaliya1"
+when 
+    Item OwT_taaliya1_raw changed
+then
+
+    val String json = (OwT_taaliya1_raw.state as StringType).toString
+
+    val String type = transform("JSONPATH", "$._type", json)
+    if (type == "location") {
+      val String lat  = transform("JSONPATH", "$.lat", json)
+      val String lon  = transform("JSONPATH", "$.lon", json)
+   //   val String acc  = transform("JSONPATH", "$.acc", json)
+      val String batt = transform("JSONPATH", "$.batt", json)
+      val String tst  = transform("JSONPATH", "$.tst", json)
+
+      logError("OWNTRACKS","Pars" + lat)
+
+      // battery state
+      OwT_taaliya1_battery.postUpdate(new PercentType(batt))
+
+      // location to address
+      val geocodeURL = "https://maps.googleapis.com/maps/api/geocode/json?latlng=" + lat + "," + lon + "&sensor=true&key=" + GoogleAPIKey
+      val String gecodeResponse = sendHttpGetRequest(geocodeURL)
+      val String formattedAddress = transform("JSONPATH", "$.results[0].formatted_address", gecodeResponse)
+
+      // create address string
+      val String street = formattedAddress.split(',').get(0)
+      val String town = formattedAddress.split(',').get(1)
+      val String country = formattedAddress.split(',').get(2)
+    
+      OwT_taaliya1_location_headline.postUpdate(street)
+      OwT_taaliya1_location.postUpdate(street + "\r\n" + town + "\r\n" + country) 
+
+      // Last Update
+      var DateTime time = new DateTime(Long::parseLong(tst) * 1000L)
+      OwT_taaliya1_update.postUpdate(new DateTimeType(time.toString))    
+      logError("OWNTRACKS","Time " + time)
+
+   }
+end
+
+
+rule "Owntracks tgdscm41 event"
+when
+  Item OwT_tgdscm41_event_raw changed
+then
+    val String json = (OwT_tgdscm41_event_raw.state as StringType).toString
+
+    val String type = transform("JSONPATH", "$._type", json)
+    if (type == "transition") {
+      val String lat  = transform("JSONPATH", "$.lat", json)
+      val String lon  = transform("JSONPATH", "$.lon", json)
+      val String tst  = transform("JSONPATH", "$.tst", json)
+      val String desc = transform("JSONPATH", "$.desc", json)
+      val String event = transform("JSONPATH", "$.event", json)
+
+      var DateTime time = new DateTime(Long::parseLong(tst) * 1000L)
+
+      // location to address
+      val geocodeURL = "https://maps.googleapis.com/maps/api/geocode/json?latlng=" + lat + "," + lon + "&sensor=true&key=" + GoogleAPIKey
+      val String gecodeResponse = sendHttpGetRequest(geocodeURL)
+      val String formattedAddress = transform("JSONPATH", "$.results[0].formatted_address", gecodeResponse)
+
+
+      logInfo("OWNTRACKS_EVENT","EVENT " + event + " " + time)
+     
+      if (event == "enter"){
+	 logError("EVENT","Event" + event)
+         sendMail("markus.schiesser@swisscom.com","Markus" + " " + event + " " + desc,"Markus" + " " + event + " " + desc + "\n\r" + time+ "\n\r" + formattedAddress)
+      //   OwT_event_tgdscm41 = event
+         enter = tst
+         logError("OWNTRACKS_EVENT","Event enter" + enter)
+      }else{
+         logError("OWNTRACKS_EVENT","Leave write to file " + event + enter + time)
+         sendMail("markus.schiesser@swisscom.com","Markus" + " " + event + " " + desc,"Markus" + " " + event + " " + desc + "\n\r" + time+ "\n\r" + formattedAddress)
+	// OwT_event_tgdscm41 = event
+	 var String cmd = "/etc/openhab2/scripts/calendar002.py@@"+enter + "@@" +tst + "@@" + desc
+         logError("OWNTRACKS_EVENT","call file" + cmd)
+
+         var String Antwort = executeCommandLine(cmd + " ",5000)
+	// var String Antwort = executeCommandLine("/etc/openhab2/scripts/calendar002.py"+enter +time ,5000)
+	 logError("OWNTRACKS_EVENT","Leave Antwort" + Antwort)
+      }
+
+    }
+end
+
+

@@ -1,0 +1,29 @@
+
+
+//Switch BULB1 "Lamp" <energy> (gLights) {http=">[ON:POST:http://192.168.2.112/api/v1/device/5CCF7FA0B919:JSONPATH({"5CCF7FA0B919":{"action":"on"}})] >[OFF:POST:http://192.168.2.112/api/v1/device/5CCF7FA0B919?action=off]"}
+//Switch BULB1 "Lamp" <energy> (gLights) {http=">[ON:POST:http://192.168.2.112/api/v1/device/5CCF7FA0B919:JSONPATH({"5CCF7FA0B919":{"action":"on"}})]"}
+//Switch BULB1 "Lamp" <light> (gLights)
+
+//Switch MYSTROM001_SW "myStrom 1" <poweroutlet> (gmyStrom) {mqtt="<[mybroker:/OPENHAB/MYSTROM/myStrom001/SWITCH:state:default]"}
+Switch MYSTROM001_SW "myStrom 1" <poweroutlet> (gmyStrom) {mqtt="<[mybroker:/OPENHAB/MYSTROM/myStrom001/SWITCH:state:default],>[mybroker:/MYSTROM01/myStrom001/SWITCH:command:*:default]"}
+Number MYSTROM001_P "myStrom 1 Power [%.2f W]" <energy> (gmyStrom) {mqtt="<[mybroker:/OPENHAB/MYSTROM/myStrom001/POWER:state:default]"}
+
+Switch MYSTROM002_SW "myStrom 2" <poweroutlet> (gmyStrom) {mqtt="<[mybroker:/OPENHAB/MYSTROM/myStrom002/SWITCH:state:default],>[mybroker:/MYSTROM01/myStrom002/SWITCH:command:*:default]"}
+Number MYSTROM002_P "myStrom 2 Power [%.2f W]" <energy> (gmyStrom) {mqtt="<[mybroker:/OPENHAB/MYSTROM/myStrom002/POWER:state:default]"}
+
+//Switch MYSTROM003_SW "myStrom 3" <poweroutlet> (gmyStrom) {mqtt="<[mybroker:/OPENHAB/MYSTROM/myStrom003/SWITCH:state:default]"}
+Switch MYSTROM003_SW "myStrom 3" <poweroutlet> (gmyStrom) {mqtt="<[mybroker:/OPENHAB/MYSTROM/myStrom003/SWITCH:state:default],>[mybroker:/MYSTROM01/myStrom003/SWITCH:command:*:default]"}
+Number MYSTROM003_P "myStrom 3 Power [%.2f W]" <energy> (gmyStrom) {mqtt="<[mybroker:/OPENHAB/MYSTROM/myStrom003/POWER:state:default]"}
+
+//Switch MYSTROM004_SW "myStrom 4" <poweroutlet> (gmyStrom) {mqtt="<[mybroker:/OPENHAB/MYSTROM/myStrom004/SWITCH:state:default]"}
+Switch MYSTROM004_SW "myStrom 4" <poweroutlet> (gmyStrom) {mqtt="<[mybroker:/OPENHAB/MYSTROM/myStrom004/SWITCH:state:default],>[mybroker:/MYSTROM01/myStrom004/SWITCH:command:*:default]"}
+Number MYSTROM004_P "myStrom 4 Power [%.2f W]" <energy> (gmyStrom) {mqtt="<[mybroker:/OPENHAB/MYSTROM/myStrom004/POWER:state:default]"}
+
+//Switch MYSTROM005_SW "myStrom 5" <poweroutlet> (gmyStrom) {mqtt="<[mybroker:/OPENHAB/MYSTROM/myStrom005/SWITCH:state:default]"}
+Switch MYSTROM005_SW "myStrom 5" <poweroutlet> (gmyStrom) {mqtt="<[mybroker:/OPENHAB/MYSTROM/myStrom005/SWITCH:state:default],>[mybroker:/MYSTROM01/myStrom005/SWITCH:command:*:default]"}
+Number MYSTROM005_P "myStrom 5 Power [%.2f W]" <energy> (gmyStrom) {mqtt="<[mybroker:/OPENHAB/MYSTROM/myStrom005/POWER:state:default]"}
+
+//Switch MYSTROM006_SW "myStrom 6" <poweroutlet> (gmyStrom) {mqtt="<[mybroker:/OPENHAB/MYSTROM/myStrom006/SWITCH:state:default]"}
+Switch MYSTROM006_SW "myStrom 6" <poweroutlet> (gmyStrom) {mqtt="<[mybroker:/OPENHAB/MYSTROM/myStrom006/SWITCH:state:default],>[mybroker:/MYSTROM01/myStrom006/SWITCH:command:*:default]"}
+Number MYSTROM006_P "myStrom 6 Power [%.2f W]" <energy> (gmyStrom) {mqtt="<[mybroker:/OPENHAB/MYSTROM/myStrom006/POWER:state:default]"}
+

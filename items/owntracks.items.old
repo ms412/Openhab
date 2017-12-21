@@ -1,0 +1,68 @@
+
+//#Switch Precent_Markus	"Markus@home [%s]" (gOwntracks) {mqttitude="owntracks:owntracks/tgdscm41/mobil"}
+//#Switch Precent_Yan	"Yan@home" (gOwntracks) {mqttitude="owntracks:owntracks/taaliya1/mobil"}
+
+//Switch  Present_Saali_Markus   "Markus@Saali [MAP(owntracks.map):%s]" <present> (gOwntracks) { mqttitude="owntracks:owntracks/tgdscm41/mobil/event:Saali" }
+//Switch  Present_Ingolstadt_Markus   "Markus@Saali [MAP(owntracks.map):%s]" <present> (gOwntracks) { mqttitude="owntracks:owntracks/tgdscm41/mobil/event:Ingolstadt" }
+//Switch  Present_SC_Ittigen_Markus   "Markus@Ittigen [MAP(owntracks.map):%s]"  <present> (gOwntracks) { mqttitude="owntracks:owntracks/tgdscm41/mobil/event:Swisscom Ittigen" }
+//Switch  Present_Zollikofen_Markus   "Markus@Zollikofen [MAP(owntracks.map):%s]" <present> (gOwntracks) { mqttitude="owntracks:owntracks/tgdscm41/mobil/event:Zollikofen" }
+//Switch  Present_SC_Worblaufen_Markus  "Markus@Worblaufen [MAP(owntracks.map):%s]" <present> (gOwntracks) { mqttitude="owntracks:owntracks/tgdscm41/mobil/event:Swisscom Worblaufen" }
+//Switch  Present_SC_Liebefeld_Markus  "Markus@Liebefeld [MAP(owntracks.map):%s]" <present> (gOwntracks) { mqttitude="owntracks:owntracks/tgdscm41/mobil/event:Swisscom Liebefeld" }
+
+//Switch  Present_Saali_Markus   "Markus@Saali [MAP(owntracks.map):%s]" <present>  { mqttitude="owntracks:owntracks/tgdscm41/mobil/event:Saali" }
+//Switch  Present_Ingolstadt_Markus   "Markus@Ingolstadt [MAP(owntracks.map):%s]" <present>  { mqttitude="owntracks:owntracks/tgdscm41/mobil/event:Ingolstadt" }
+//Switch  Present_SC_Ittigen_Markus   "Markus@Ittigen [MAP(owntracks.map):%s]"  <present>  { mqttitude="owntracks:owntracks/tgdscm41/mobil/event:Swisscom Ittigen" }
+//Switch  Present_Zollikofen_Markus   "Markus@Zollikofen [MAP(owntracks.map):%s]" <present>  { mqttitude="owntracks:owntracks/tgdscm41/mobil/event:Zollikofen" }
+//Switch  Present_SC_Worblaufen_Markus  "Markus@Worblaufen [MAP(owntracks.map):%s]" <present>  { mqttitude="owntracks:owntracks/tgdscm41/mobil/event:Swisscom Worblaufen" }
+//Switch  Present_SC_Liebefeld_Markus  "Markus@Liebefeld [MAP(owntracks.map):%s]" <present>  { mqttitude="owntracks:owntracks/tgdscm41/mobil/event:Swisscom Liebefeld" }
+
+//Switch  Present_Saali_Yan   "Yan@Saali [MAP(owntracks.map):%s]" <present>  { mqttitude="owntracks:owntracks/taaliya1/mobil/event:Saali" }
+//Switch  Present_Ingolstadt_Yan   "Yan@Ingolstadt [MAP(owntracks.map):%s]" <present>  { mqttitude="owntracks:owntracks/taaliya1/mobil/event:Ingolstadt" }
+//Switch  Present_SC_Ittigen_Yan   "Yan@Ittigen [MAP(owntracks.map):%s]"  <present>  { mqttitude="owntracks:owntracks/taaliya1/mobil/event:Swisscom Ittigen" }
+//Switch  Present_Zollikofen_Yan   "Yan@Zollikofen [MAP(owntracks.map):%s]" <present>  { mqttitude="owntracks:owntracks/taaliya1/mobil/event:Zollikofen" }
+
+//Switch  Present_Saali_Mathilde   "Mathilde@Saali [%s]" <present>  { mqttitude="owntracks:owntracks/mathilde/iphone/event:Saali" }
+//Switch  Present_Ingolstadt_Mathilde   "Mathilde@Ingolstadt [%s]" <present>  { mqttitude="owntracks:owntracks/mathilde/iphone/event:Ingolstadt" }
+
+//DateTime OwT_tgdscm41_lastSeen "Timestamp markus [%1$td/%1$tm %1$tH:%1$tM]" <clock> (gOwntracks)  { mqtt="<[owntracks:owntracks/tgdscm41/mobil:state:JS(owntime.js)]"}
+//DateTime OwT_taaliya1_lastSeen "Timestamp \u6797\u8273 [%1$td/%1$tm %1$tH:%1$tM]" <clock> (gOwntracks)  { mqtt="<[owntracks:owntracks/taaliya/mobil:state:JS(owntime.js)]"}
+
+//String OwT_tgdscm41_raw "data [%s]"   { mqtt="<[owntracks:owntracks/tgdscm41/mobil:state:default:.*]"}
+//String OwT_taaliya1_raw "data [%s]"   { mqtt="<[owntracks:owntracks/taaliya1/mobil:state:default:.*]"}
+
+
+String OwT_tgdscm41_raw    { mqtt="<[owntracks:owntracks/tgdscm41/mobil:state:default:.*]"}
+String OwT_taaliya1_raw    { mqtt="<[owntracks:owntracks/taaliya1/mobil:state:default:.*]"}
+String OwT_tgdscm41_event_raw { mqtt="<[owntracks:owntracks/tgdscm41/mobil/event:state:default:.*]"}
+
+
+
+
+//Number OwT_tgdscm41_mobil "Markus Battery [%.0f%%]" <battery>   (gOwntracks)  { mqtt="<[owntracks:owntracks/tgdscm41/mobil:state:JSONPATH($.batt)]"}
+//Number OwT_taaliya_mobil  "Yan Battery [%.0f%%]"    <battery>   (gOwntracks)  { mqtt="<[owntracks:owntracks/taaliya1/mobil:state:JSONPATH($.batt)]"}
+//Number OwT_mathilde_mobil "Mama Battery [%.0f%%]"   <battery>   (gOwntracks)  { mqtt="<[owntracks:owntracks/mathilde/iphone:state:JSONPATH($.batt)]"}
+
+Number OwT_tgdscm41_battery "Battery [%.0f%%]" <battery>   (gOwntracks)
+String OwT_tgdscm41_location "Location [%s]" <place>  (gOwntracks)
+DateTime OwT_tgdscm41_update "Update [%1$td/%1$tm %1$tH:%1$tM]"<clock> (gOwntracks)
+String OwT_tgdscm41_location_headline "[%s]" (gOwntracks)
+//Virtual item
+//String OwT_event_tgdscm41  "[%s]" (gOwntracks)
+
+
+
+Number OwT_taaliya1_battery"Battery [%.0f%%]" <battery>   (gOwntracks)
+String OwT_taaliya1_location "Location [%s]" <place>  (gOwntracks)
+DateTime OwT_taaliya1_update "Update [%1$td/%1$tm %1$tH:%1$tM]"<clock> (gOwntracks)
+String OwT_taaliya1_location_headline "[%s]" (gOwntracks)
+
+
+
+
+//String WoIstMarkus "Wo ist Markus [%s]" 	<man_1>   (gOwntracks)
+//String WoIstYan    "Wo ist \u6797\u8273 [%s]"   <girl_4>  (gOwntracks)
+//String WoIstMathilde   "Wo ist Mama [%s]" 	<girl_1>   (gOwntracks)
+
+//String OTLastSeenMarkus "Last Seen Markus [%s]" (gOwntracks)
+
+//String OwT_event_tgdscm41 

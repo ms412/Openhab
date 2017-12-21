@@ -1,0 +1,14 @@
+
+	
+rule "test for email action"
+when 
+   Time cron "0,10,20,30,40,50 * * * * ?"
+then
+/*
+      sendMail("markus.schiesser@swisscom.com", "Dies ist eine Test-Mail", "Dies ist die Information")
+
+	SchwartzeTonne.sendCommand(ON)
+*/
+end
+
+

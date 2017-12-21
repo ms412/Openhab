@@ -1,0 +1,6 @@
+
+Number SumpfPumpe001  "Sumpf Pumpe [%.1f cm]" (gKeller)  {mqtt="<[mybroker:/OPENHAB/ULTRASONIC001:state:default]"}
+Number TempWaschKeller001  "Waschkeller [%.1f °C]" <temperature> (gKeller)  {mqtt="<[mybroker:/OPENHAB/ONEWIRE001/28-000003c372e3:state:default]"}
+
+
+

@@ -1,0 +1,50 @@
+
+//val Number startValue = AC_TOTAL_POWER
+
+rule "Update power"
+when
+   // Time cron "0 0 0 * * ? *"
+  //  Time cron "0 * * * * ? *"
+    Item AC_POWER1 changed
+  
+then
+   //  LastDayPower.postUpdate(AC_TOTAL_POWER.state as Number)
+
+ //   logError("PVRULES","Power Total " + AC_TOTAL_POWER.state)
+   // logError("PVRULES","Power Yesterday " + LastDayPower.maximumSince(now.minusDays(1)).state)
+
+   // logError("PVRULES","Power Yesterday " + LastDayPower.minimumSince(now.minusDays(7)).state)
+   // logError("PVRULES","Power Week " + LastDayPower.minimumSince(now.minusWeeks(2).withTimeAtStartOfDay).state)
+
+
+    val Number test = AC_POWER1.state
+   // logError("PV Value","XXX " + AC_POWER1 + test + LastDayPower)
+    
+   // logError("PV_POWER","Power PV " + AC_POWER1.sumSince(now.minusDays(1).withTimeAtStartOfDay).state)
+
+
+  //  LastDayPower.postUpdate((AC_TOTAL_POWER.state as Number)- now.minusDays(1))
+//    LastWeekPower.postUpdate(LastDayPower.sumSince(now.minusWeeks(1)))
+ //   LastMonthPower.postUpdate(LastDayPower.postUpdate(now.minusMonths(1))) // you can get more complex here is needed
+  //  LastYearPower.postUpdate(LastDayPower.postUpdate(now.minusYears(1)))
+    
+    // Reset the reporter to start over at zero, most devices have a Channel to do this, if not you need to add some logic to handle this
+end
+
+rule SumPowerofString
+when
+    Item STROM1 received update
+then
+    Thread::sleep(500)
+    var double sumPower = 0.0
+    var double voltage = (DC_VOLTAGE1.state as DecimalType).doubleValue
+    
+    gStringA.members.forEach [s|
+    	sumPower=sumPower+((s.state as DecimalType).doubleValue)
+    ]
+    DC_CURRENT1.postUpdate(sumPower)
+    DC_POWER1.postUpdate(sumPower * voltage)
+
+end
+
+

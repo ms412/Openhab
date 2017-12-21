@@ -1,0 +1,53 @@
+rule Startup
+when
+	System started
+then
+	sendCommand(Present_Zollikofen_Mathilde,OFF)
+	sendCommand(Present_Saali_Mathilde,OFF)
+	sendCommand(Present_Ingolstadt_Mathilde,OFF)
+	sendCommand(Present_SC_Ittigen_Mathilde,OFF)
+	sendCommand(Present_SC_Worblaufen_Mathilde,OFF)
+	sendCommand(Present_SC_Liebefeld_Mathilde,OFF)
+	
+end
+
+rule "Present Zollikofen Mathilde"
+when
+	Item Present_Zollikofen_Mathilde changed 
+then
+	if (Present_Zollikofen_Mathilde.state == ON) {
+		sendMail("markus.schiesser@swisscom.com","Mathilde Zollikofen","Mathilde Enter Zollikofen")
+		WoIstMathilde.postUpdate("Zollikofen")
+	}else{
+		sendMail("markus.schiesser@swisscom.com","Mathilde Zollikofen","Mathilde Leave Zollikofen")
+		WoIstMathilde.postUpdate("Don't know")
+	}
+end
+
+rule "Present Saali Mathilde"
+when
+        Item Present_Saali_Mathilde changed 
+then
+	if (Present_Saali_Mathilde.state == ON) {
+        	sendMail("markus.schiesser@swisscom.com","Mathilde Saali","Mathilde Enter Saali")
+		WoIstMathilde.postUpdate("Saali")
+	}else{
+        	sendMail("markus.schiesser@swisscom.com","Mathilde Saali","Mathilde Leave Saali")
+		WoIstMathilde.postUpdate("Don't know")
+	}
+end
+
+rule "Present Ingolstadt Mathilde"
+when
+        Item Present_Ingolstadt_Mathilde changed 
+then
+	if (Present_Ingolstadt_Mathilde.state == ON) {
+        	sendMail("markus.schiesser@swisscom.com","Mathilde Ingolstadt","Mathilde Enter Ingolstadt")
+		WoIstMathilde.postUpdate("Ingolstadt")
+
+	}else{
+        	sendMail("markus.schiesser@swisscom.com","Mathilde Ingolstadt","Mathilde Leave Ingolstadt")
+		WoIstMathilde.postUpdate("Don't know")
+	}
+end
+

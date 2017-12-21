@@ -1,0 +1,22 @@
+
+
+val String bulb1_url = 'http://192.168.2.112/api/v1/device/5CCF7FA0B919:' 
+val String bulb1_on = '{"5CCF7FA0B919":{"action":"on"}}'
+val String bulb1_off = '{"5CCF7FA0B919":{"action":"off"}}'
+var String result
+
+rule "BULB1"
+when
+	Item BULB1 received command
+then
+	switch(receivedCommand){
+		//case ON : sendHttpPostRequest(bulb1_url, "Content-Type: application/json; charset=utf-8", bulb1_on) 
+		case ON : result = executeCommandLine("/usr/bin/curl -d 'action=on' http://192.168.2.112/api/v1/device/5CCF7FA0B919",5000)
+		case OFF : result = executeCommandLine("/usr/bin/curl -d 'action=off' http://192.168.2.112/api/v1/device/5CCF7FA0B919",5000)
+	//	case ON : executeCommandLine(curl -d "action=on" http://192.168.2.112/api/v1/device/5CCF7FA0B919)
+		//case OFF : sendHttpPostRequest(bulb1_url, "Content-Type: application/json; charset=utf-8", bulb1_off) 
+	}
+	logInfo("BULB1", result)
+end
+
+

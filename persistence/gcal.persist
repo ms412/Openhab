@@ -1,0 +1,8 @@
+Strategies {
+	default = everyChange
+}
+
+Items {
+	OwT_event_tgdscm41 : strategy = everyChange
+//	gOwntracks* : strategy = everyChange
+}

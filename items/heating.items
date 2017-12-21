@@ -1,0 +1,37 @@
+
+
+Number TempKist "Kesseltemperatur [%.1f °C ]" <temperature> (gHeating)  {mqtt="<[mybroker:/OPENHAB/VIESSMANN/getTempKist:state:default]"}
+Number TempA "Aussen Temperature [%.1f °C]" <temperature> (gHeating)  {mqtt="<[mybroker:/OPENHAB/VIESSMANN/getTempA:state:default]"}
+Number TempAtp "Aussen Temperature tp[%.1f °C]" <temperature> (gHeating)  {mqtt="<[mybroker:/OPENHAB/VIESSMANN/getTempAtp:state:default]"}
+Number TempAbgas "Abgas Temperature [%.1f °C]" <temperature> (gHeating)  {mqtt="<[mybroker:/OPENHAB/VIESSMANN/getTempAbgas:state:default]"}
+
+
+Number getTempKsoll "TempKsoll [%.1f °C]" <temperature> (gHeating)  {mqtt="<[mybroker:/OPENHAB/VIESSMANN/getTempKsoll:state:default]"}
+Number getTempWWist "Warmwassertemperatur [%.1f °C]" <temperature> (gHeating)  {mqtt="<[mybroker:/OPENHAB/VIESSMANN/getTempWWist:state:default]"}
+Number getTempWWsoll "Warmwassertemperatur sol [%.1f °C]" <temperature> (gHeating)  {mqtt="<[mybroker:/OPENHAB/VIESSMANN/getTempWWsoll:state:default]"}
+
+Number getTempVListM1 "Vorlauftemperature M1 [%.1f °C]" <temperature> (gHeating)  {mqtt="<[mybroker:/OPENHAB/VIESSMANN/getTempVListM1:state:default]"}
+Number getTempVListM2 "Vorlauftemperature M2 [%.1f °C]" <temperature> (gHeating)  {mqtt="<[mybroker:/OPENHAB/VIESSMANN/getTempVListM2:state:default]"}
+Number getTempRL17A "getTempRL17A [%.1f °C]" <temperature> (gHeating)  {mqtt="<[mybroker:/OPENHAB/VIESSMANN/getTempRL17A:state:default]"}
+
+
+Number getVolStrom "Volumenstrom [%.1f l/h]" <temperature> (gHeating)  {mqtt="<[mybroker:/OPENHAB/VIESSMANN/getVolStrom:state:default]"}
+Number getPumpeStatusM1 "getPumpeStatusM1 [%.1f ]" <temperature> (gHeating)  {mqtt="<[mybroker:/OPENHAB/VIESSMANN/getPumpeStatusM1:state:default]"}
+Number getPumpeStatusM2 "getPumpeStatusM2 [%.1f ]" <temperature> (gHeating)  {mqtt="<[mybroker:/OPENHAB/VIESSMANN/getPumpeStatusM2:state:default]"}
+Number getPumpeStatusIntern "getPumpeStatusIntern [%.1f ]" <temperature> (gHeating)  {mqtt="<[mybroker:/OPENHAB/VIESSMANN/getPumpeStatusIntern:state:default]"}
+Number getPumpeDrehzahlIntern "getPumpeDrehzahlIntern [%.1f ]" <temperature> (gHeating)  {mqtt="<[mybroker:/OPENHAB/VIESSMANN/getPumpeStatusIntern:state:default]"}
+Number getPumpeStatusZirku "getPumpeStatusZirku [%.1f ]" <temperature> (gHeating)  {mqtt="<[mybroker:/OPENHAB/VIESSMANN/getPumpeStatusZirku:state:default]"}
+Number getPumpeDrehzahlM2 "getPumpeDrehzahlM2 [%.1f ]" <temperature> (gHeating)  {mqtt="<[mybroker:/OPENHAB/VIESSMANN/getPumpeDrehzahlM2:state:default]"}
+
+
+Number getBrennerStatusIntern "getBrennerStatus Intern [%.1f]" (gHeating)  {mqtt="<[mybroker:/OPENHAB/VIESSMANN/getBrennerStatusIntern:state:default]"}
+Number getBrennerStarts "Brennerstarts [%.1f]" (gHeating)  {mqtt="<[mybroker:/OPENHAB/VIESSMANN/getBrennerStarts:state:default]"}
+Number getBrennerStunden "Brennerstunden [%.1f]" (gHeating)  {mqtt="<[mybroker:/OPENHAB/VIESSMANN/getBrennerStunden1:state:default]"}
+Number getStatusStoerung "Stoerung [%.1f]" (gHeating)  {mqtt="<[mybroker:/OPENHAB/VIESSMANN/getStatusStoerung:state:default]"}
+
+String getBetriebArtM1 "BetriebsArtM1 [%s] " (gHeating)  {mqtt="<[mybroker:/OPENHAB/VIESSMANN/getBetriebArtM1:state:default]"}
+String getBetriebArtM2 "BetriebsArtM2 [%s] " (gHeating)  {mqtt="<[mybroker:/OPENHAB/VIESSMANN/getBetriebArtM2:state:default]"}
+String getUmschaltventil "UmschaltVentil [%s] " (gHeating)  {mqtt="<[mybroker:/OPENHAB/VIESSMANN/getUmschaltventil:state:default]"}
+// String getBrennerStatus "Brenner Status [%s] " (gHeating)  {mqtt="<[mybroker:/OPENHAB/VIESSMANN/getBrennerStatus:state:default]"}
+
+String getLeistungIst "Brenner Leistung Ist [%s] " (gHeating)  {mqtt="<[mybroker:/OPENHAB/VIESSMANN/getLeistungIst:state:default]"}

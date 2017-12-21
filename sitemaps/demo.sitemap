@@ -1,0 +1,73 @@
+sitemap demo label="openhab2" {
+
+    Frame label="Photovoltaik" {
+//	Group item=gStringA label="String Current"
+		
+	    Text label="Production" item=AC_POWER1{
+			Frame label="Details"{
+//				Frame label='Raumtemperatur'{
+//				Webview height=15 url="http://192.168.2.50:3000/dashboard-solo/db/heating?panelId=1&orgId=1&from=1509479828927&to=1510084628927"
+//				Webview height=15 url="http://192.168.2.50:3000/dashboard-solo/db/photovoltaik?orgId=1&panelId=1&from=1509483587583&to=1510088387584"
+                                //Image refresh=60000 url="http://192.168.2.50:3000/dashboard-solo/db/photovoltaik?orgId=1&panelId=1&from=1509888211888&to=1510493011889" width="450" height="200" frameborder="0"
+                                Image refresh=60000 url="http://192.168.2.50:3000/dashboard/db/photovoltaik?orgId=1&panelId=1&width=700&height=350&from=now-48h&to=now"
+//				}
+				Group item=gStringA label="Current per String"
+					
+				Text item=DC_VOLTAGE1 label="DC Voltage"
+				Text item=DC_CURRENT1 label="DC Current"
+				Text item=DC_POWER1   label="DC Power" 
+
+				Text item=AC_VOLTAGE1 label="AC Voltage"
+				Text item=AC_CURRENT1 label="AC Current"
+				Text item=AC_POWER1   label="AC Power"
+                                Text item=AC_TOTAL_POWER label="Total Power"
+				Text item=LastDayPower label="Power Yesterday"
+				Text item=LastWeekPower label="Power Last Week"
+				
+			}
+		}
+	}
+
+	Frame label="Ingolstadt"{
+		Text label="1st Floor" item=TempWaschKeller001{
+			Frame label="Kueche"{
+				Text label="Test"
+			}
+		}
+		Text label="Basement" item=TempWaschKeller001{
+			Frame label="Waschkeller"{
+				//Webview height=15 url="http://192.168.2.50:3000/dashboard-solo/db/keller?orgId=1&from=1507577719500&to=1510173319501&panelId=1"
+//				Image cwrefresh=60000 url="http://192.168.2.50:3000/dashboard-solo/db/keller?orgId=1&from=1507577719500&to=1510173319501&panelId=1"
+				Text item=TempWaschKeller001 label="Temperature"
+				Text item=SumpfPumpe001		 label="Sumpf Pumpe Wasserstand"	
+				Text item=ZWaveFloodSensor001_Sensor label="Flood Sensor"
+			
+			}
+		}
+	}
+    Frame label="Presence"{
+        Text label="Markus" icon="man_1" item=OwT_tgdscm41_location_headline{
+			Text item=OwT_tgdscm41_update
+			Text item=OwT_tgdscm41_battery
+			Text item=OwT_tgdscm41_location
+	    }
+		Text label="\u6797\u8273" icon="girl_4" item=OwT_taaliya1_location_headline{
+			Text item=OwT_taaliya1_update
+			Text item=OwT_taaliya1_battery
+			Text item=OwT_taaliya1_location 
+        }
+	}
+    Frame label="myStrom" {
+	Group item=gmyStrom
+	}
+    Frame label="Waschkeller" {
+	Group item=gKeller
+        }
+    Frame label="Viessmann" {
+        Group item=gHeating
+        }
+		
+	Frame label="zWave" {
+		Group item=gzWave
+		}
+}

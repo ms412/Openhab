@@ -1,0 +1,33 @@
+
+rule AlarmButton
+when
+    Item ALARM_BUTTON01 received update
+then
+	logInfo('Debug','ALARM_BUTTON01')
+//	sendNotification('m.schiesser@gmail.com','ALARM Button Pressed')
+	sendBroadcastNotification('ALARM Button Pressed')  
+	
+end
+
+rule AlarmButton2
+when 
+    Item ALARM_BUTTON02 received update
+then
+        logInfo('Debug','ALARM_BUTTON02')
+	sendBroadcastNotification('Mama ALARM')  
+end
+
+rule AlarmButton3
+when
+   Item ALARM_BUTTON03 received update
+then
+	logInfo('Debug','ALARM_BUTTON03 pushed')
+end
+
+rule Button4
+when
+   Item BUTTON04 received update
+then
+	logInfo('Debug','ALARM_BUTTON03 pushed')
+        sendNotification('markus.schiesser@swisscom.com','ALARM Button04 Pressed')
+end
