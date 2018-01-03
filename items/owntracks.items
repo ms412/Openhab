@@ -1,6 +1,7 @@
 
 String OwT_tgdscm41_raw    { mqtt="<[owntracks:owntracks/tgdscm41/mobil:state:default:.*]"}
 String OwT_taaliya1_raw    { mqtt="<[owntracks:owntracks/taaliya1/mobil:state:default:.*]"}
+String OwT_mathilde_raw    { mqtt="<[owntracks:owntracks/mathilde/iphone:state:default:.*]"}
 String OwT_tgdscm41_event_raw { mqtt="<[owntracks:owntracks/tgdscm41/mobil/event:state:default:.*]"}
 
 Number OwT_tgdscm41_battery "Battery [%.0f%%]" <battery>   (gOwntracks)
@@ -13,3 +14,8 @@ Number OwT_taaliya1_battery"Battery [%.0f%%]" <battery>   (gOwntracks)
 String OwT_taaliya1_location "Location [%s]" <place>  (gOwntracks)
 DateTime OwT_taaliya1_update "Update [%1$td/%1$tm %1$tH:%1$tM]"<clock> (gOwntracks)
 String OwT_taaliya1_location_headline "[%s]" (gOwntracks)
+
+Number OwT_mathilde_battery"Battery [%.0f%%]" <battery>   (gOwntracks)
+String OwT_mathilde_location "Location [%s]" <place>  (gOwntracks)
+DateTime OwT_mathilde_update "Update [%1$td/%1$tm %1$tH:%1$tM]"<clock> (gOwntracks)
+String OwT_mathilde_location_headline "[%s]" (gOwntracks)

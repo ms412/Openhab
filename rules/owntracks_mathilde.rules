@@ -1,53 +1,48 @@
-rule Startup
-when
-	System started
-then
-	sendCommand(Present_Zollikofen_Mathilde,OFF)
-	sendCommand(Present_Saali_Mathilde,OFF)
-	sendCommand(Present_Ingolstadt_Mathilde,OFF)
-	sendCommand(Present_SC_Ittigen_Mathilde,OFF)
-	sendCommand(Present_SC_Worblaufen_Mathilde,OFF)
-	sendCommand(Present_SC_Liebefeld_Mathilde,OFF)
-	
-end
 
-rule "Present Zollikofen Mathilde"
-when
-	Item Present_Zollikofen_Mathilde changed 
-then
-	if (Present_Zollikofen_Mathilde.state == ON) {
-		sendMail("markus.schiesser@swisscom.com","Mathilde Zollikofen","Mathilde Enter Zollikofen")
-		WoIstMathilde.postUpdate("Zollikofen")
-	}else{
-		sendMail("markus.schiesser@swisscom.com","Mathilde Zollikofen","Mathilde Leave Zollikofen")
-		WoIstMathilde.postUpdate("Don't know")
-	}
-end
+//val String where_is_markus ="Don't kown"
 
-rule "Present Saali Mathilde"
-when
-        Item Present_Saali_Mathilde changed 
-then
-	if (Present_Saali_Mathilde.state == ON) {
-        	sendMail("markus.schiesser@swisscom.com","Mathilde Saali","Mathilde Enter Saali")
-		WoIstMathilde.postUpdate("Saali")
-	}else{
-        	sendMail("markus.schiesser@swisscom.com","Mathilde Saali","Mathilde Leave Saali")
-		WoIstMathilde.postUpdate("Don't know")
-	}
-end
+val String GoogleAPIKey = "AIzaSyD_DswI2aS9vsGX51fOQKiB6GdWFxfOjnI"
 
-rule "Present Ingolstadt Mathilde"
-when
-        Item Present_Ingolstadt_Mathilde changed 
-then
-	if (Present_Ingolstadt_Mathilde.state == ON) {
-        	sendMail("markus.schiesser@swisscom.com","Mathilde Ingolstadt","Mathilde Enter Ingolstadt")
-		WoIstMathilde.postUpdate("Ingolstadt")
+val String OwT_event_mathilde ="unknown"
 
-	}else{
-        	sendMail("markus.schiesser@swisscom.com","Mathilde Ingolstadt","Mathilde Leave Ingolstadt")
-		WoIstMathilde.postUpdate("Don't know")
-	}
+
+
+rule "Owntracks tgdscm41"
+when 
+    Item OwT_mathilde_raw changed
+then
+
+    val String json = (OwT_tgdscm41_raw.state as StringType).toString
+
+    val String type = transform("JSONPATH", "$._type", json)
+    if (type == "location") {
+      val String lat  = transform("JSONPATH", "$.lat", json)
+      val String lon  = transform("JSONPATH", "$.lon", json)
+    //  val String acc  = transform("JSONPATH", "$.acc", json)
+      val String batt = transform("JSONPATH", "$.batt", json)
+      val String tst  = transform("JSONPATH", "$.tst", json)
+
+  //    logError("OWNTRACKS","Pars" + lat)
+
+      OwT_mathilde_battery.postUpdate(new PercentType(batt))
+      val geocodeURL = "https://maps.googleapis.com/maps/api/geocode/json?latlng=" + lat + "," + lon + "&sensor=true&key=" + GoogleAPIKey
+   
+      val String gecodeResponse = sendHttpGetRequest(geocodeURL)
+      val String formattedAddress = transform("JSONPATH", "$.results[0].formatted_address", gecodeResponse)
+      logError("OWNTRACKS","Pars" + formattedAddress)
+
+     // val String formattedAddressParts = formattedAddress.split(",")
+      val String street = formattedAddress.split(',').get(0)
+      val String town = formattedAddress.split(',').get(1)
+      val String country = formattedAddress.split(',').get(2)
+
+      OwT_mathilde_location_headline.postUpdate(street) 
+      OwT_mathilde_location.postUpdate(street + "\r\n" + town + "\r\n" + country)  
+
+      var DateTime time = new DateTime(Long::parseLong(tst) * 1000L)
+      OwT_mathilde_update.postUpdate(new DateTimeType(time.toString))  
+      logError("OWNTRACKS","Time " + time)
+
+   }
 end
 

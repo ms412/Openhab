@@ -8,6 +8,13 @@ when
     Item AC_POWER1 changed
   
 then
+	AC_POWER_last24h.postUpdate(AC_POWER1.sumSince(now.minusHours(24)))
+	AC_POWER_last1w.postUpdate(AC_POWER1.sumSince(now.minusWeeks(1)))
+	AC_POWER_last1m.postUpdate(AC_POWER1.sumSince(now.minusMonths(1)))
+	
+	logInfo("PVRules","Last 24h" + AC_POWER_last24h)
+	logInfo("PVRules","Last 1w" + AC_POWER_last1w)
+	logInfo("PVRules","Last 1m" + AC_POWER_last1m)
    //  LastDayPower.postUpdate(AC_TOTAL_POWER.state as Number)
 
  //   logError("PVRULES","Power Total " + AC_TOTAL_POWER.state)
@@ -17,7 +24,7 @@ then
    // logError("PVRULES","Power Week " + LastDayPower.minimumSince(now.minusWeeks(2).withTimeAtStartOfDay).state)
 
 
-    val Number test = AC_POWER1.state
+  //  val Number test = AC_POWER1.state
    // logError("PV Value","XXX " + AC_POWER1 + test + LastDayPower)
     
    // logError("PV_POWER","Power PV " + AC_POWER1.sumSince(now.minusDays(1).withTimeAtStartOfDay).state)

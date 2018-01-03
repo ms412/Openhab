@@ -21,8 +21,8 @@ sitemap demo label="openhab2" {
 				Text item=AC_CURRENT1 label="AC Current"
 				Text item=AC_POWER1   label="AC Power"
                                 Text item=AC_TOTAL_POWER label="Total Power"
-				Text item=LastDayPower label="Power Yesterday"
-				Text item=LastWeekPower label="Power Last Week"
+				Text item=AC_POWER_last24h label="Power last 24h"
+				Text item=AC_POWER_last1w label="Power last  Week"
 				
 			}
 		}
@@ -56,6 +56,11 @@ sitemap demo label="openhab2" {
 			Text item=OwT_taaliya1_battery
 			Text item=OwT_taaliya1_location 
         }
+        Text label="Mathilde" icon="girl_1" item=OwT_mathilde_location_headline{
+			Text item=OwT_mathilde_update
+			Text item=OwT_mathilde_battery
+			Text item=OwT_mathilde_location
+	    }
 	}
     Frame label="myStrom" {
 	Group item=gmyStrom
@@ -64,6 +69,9 @@ sitemap demo label="openhab2" {
 	Group item=gKeller
         }
     Frame label="Viessmann" {
+	    Text item=GasVolumen
+            Text item=GasCurrent 
+            Text item=GasVol_Today
         Group item=gHeating
         }
 		

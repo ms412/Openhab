@@ -19,10 +19,10 @@ Number AC_VOLTAGE1 "AC_VOLTAGE 1 [%.1f V]" <energy> (gPV) {mqtt="<[mybroker:/OPE
 
 Number AC_TOTAL_POWER "TOTAL POWER[%.2f kWh]" <energy> (gPV) {mqtt="<[mybroker:/OPENHAB/AC/TOTAL_ACTIVE_ENERGY:state:default]"}
 
-Number LastDayPower "Last Day Power[%.2f kWh]" <energy> (gPV)
-Number LastWeekPower "Last Week Power[%.2f kWh]" <energy> (gPV)
-Number LastMonthPower "Last Month Power[%.2f kWh]" <energy> (gPV)
-Number LsatYearPower "Last Year Power[%.2f kWh]" <energy> (gPV)
+Number AC_POWER_last24h "Last Day Power[%.2f kWh]" <energy> (gPV)
+Number AC_POWER_last1w "Last Week Power[%.2f kWh]" <energy> (gPV)
+Number AC_POWER_last1m "Last Month Power[%.2f kWh]" <energy> (gPV)
+//Number LsatYearPower "Last Year Power[%.2f kWh]" <energy> (gPV)
 
 Number DC_CURRENT1 "DC_CURRENT 1 [%.2f A]" <energy> (gPV)
 Number DC_POWER1 "DC_POWER 1 [%.2f W]" <energy> (gPV)
